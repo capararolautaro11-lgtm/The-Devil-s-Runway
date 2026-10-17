@@ -23,6 +23,7 @@
 }
 
 body {
+    min-width: 1024px; /* Fuerza a la página a tener al menos este ancho siempre */
     font-family: var(--font-text);
     color: var(--text-main);
     background-color: var(--bg-main);
