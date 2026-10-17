@@ -23,7 +23,8 @@
 }
 
 body {
-    min-width: 1024px; /* Fuerza a la página a tener al menos este ancho siempre */
+    /* ELIMINA la línea min-width si la tienes */
+    overflow-x: hidden; /* Agrega esta línea para evitar el scroll horizontal */
     font-family: var(--font-text);
     color: var(--text-main);
     background-color: var(--bg-main);
@@ -32,7 +33,6 @@ body {
     scroll-behavior: smooth;
     transition: 0.5s;
 }
-
 header {
     background-color: var(--bg-dark);
     padding: 5.5rem 0;
@@ -274,87 +274,78 @@ h2:hover {
 #devil{
     scale: 0.5
 }
-/* 📱 ADAPTACIÓN PARA CELULARES Y TABLETS (Optimizada para Ver Imágenes Completas) */
+/* 📱 ADAPTACIÓN PARA CELULARES Y TABLETS (Sin desbordes horizontales) */
 @media (max-width: 768px) {
-    /* 1. Reducir espacios del encabezado y contenedor principal */
+    /* Evitar que el logo rompa el ancho de la pantalla */
+    .header-logo {
+        max-width: 85%; 
+        height: auto;
+    }
+
     header {
         padding: 2rem 0;
     }
 
+    /* Ajuste para que el contenedor principal respete los bordes */
     main {
-        margin: 1.2rem 0.8rem; /* Pequeño margen en los bordes para no perder espacio de pantalla */
+        margin: 1.2rem auto; 
+        width: 90%; /* Limita el ancho para que no toque los bordes del celular */
         padding: 1.5rem;
-        border-radius: 12px;
+        box-sizing: border-box;
     }
 
-    /* 2. Ajustar tamaños de títulos que eran demasiado grandes */
     #titulo {
-        scale: 1.1; /* Ajuste para que el título no desborde en pantallas angostas */
-        margin-bottom: 25px;
+        scale: 1; /* Eliminamos el scale para que no genere anchos fantasma */
+        font-size: 2rem;
+        margin-bottom: 20px;
     }
 
     .title-fx {
         font-size: 1.8rem;
     }
 
-    /* 3. Tarjeta de personaje: Asegurar imagen completa y apilada */
+    /* Tarjeta de personaje apilada */
     .character-layout {
-        flex-direction: column; /* Apila los elementos verticalmente */
+        flex-direction: column;
         padding: 10px;
-        gap: 15px; /* Crea separación sin solaparse innecesariamente */
+        gap: 15px;
     }
 
     .character-img {
         width: 100%;
         max-width: 100%;
-        height: auto; /* Permite que la imagen del personaje sea totalmente flexible */
-        aspect-ratio: auto; /* Mantiene la proporción natural de la foto */
+        height: auto;
         border-radius: 10px;
-        z-index: 1;
     }
 
     .character-content {
-        margin-right: 0; 
-        margin-top: 0; /* Quita la superposición del texto sobre la foto, evitando tapar al personaje */
-        padding: 20px;
-        z-index: 2;
+        margin: 0; 
+        padding: 15px;
     }
 
-    /* 4. Imágenes de Fondo y Flyers COMPLETOS (No se recortan jamás) */
+    /* Imágenes completas y responsivas */
     #flyer {
         width: 100%;
         max-width: 100%;
-        height: auto; /* Permite que el alto se calcule en base al ancho de la pantalla */
-        aspect-ratio: 2 / 3; /* Asegura la proporción estándar de flyer para que encaje toda la imagen de fondo */
-        background-size: contain; /* Obliga a la imagen a verse completa, adaptando su tamaño de forma exacta */
-        background-repeat: no-repeat;
-        background-color: transparent; /* Quita el color de fondo innecesario */
-    }
-
-    #Imagen {
-        width: 100%;
-        max-height: unset; /* Quita límites fijos que arruinarían el tamaño */
         height: auto;
-        aspect-ratio: 16 / 9; /* Forzamos la proporción típica de paisaje para que la foto no se aplaste o recorte */
-        background-size: contain; /* Obliga a la imagen a visualizarse 100% entera */
+        aspect-ratio: 2 / 3;
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        background-color: transparent;
+        margin: 15px auto;
     }
 
-    #cajai {
+    #Imagen, #cajai {
         width: 100%;
+        max-height: unset;
         height: auto;
-        aspect-ratio: 16 / 9; /* Garantiza que la "caja" mantenga las proporciones completas del segundo flyer */
-        background-size: contain; /* Evita recortes del link/flyer secundario */
+        aspect-ratio: 16 / 9;
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        scale: 1; /* Eliminamos el achicado (scale: 0.7) para que en celulares se aproveche el espacio al máximo */
-    }
-
-    /* 5. Ajustes de textos y navegación */
-    p {
-        text-align: left; /* Evita que queden espacios vacíos raros entre palabras por la justificación en pantalla pequeña */
-        font-size: 0.95rem;
+        margin: 15px auto;
+        scale: 1; /* Quitamos escalas que deforman el contenedor en móvil */
     }
 
     nav {
@@ -364,6 +355,5 @@ h2:hover {
     .nav-btn {
         padding: 10px 18px;
         font-size: 0.8rem;
-        letter-spacing: 1px;
     }
 }
