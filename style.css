@@ -274,5 +274,75 @@ h2:hover {
 #devil{
     scale: 0.5
 }
+/* 📱 ADAPTACIÓN PARA CELULARES Y TABLETS (Media Query) */
+@media (max-width: 768px) {
+    /* 1. Reducir espacios del encabezado y contenedor principal */
+    header {
+        padding: 2rem 0;
+    }
 
-        max-width: 
+    main {
+        margin: 1.5rem 1rem; /* Añade espacio a los lados para que no toque los bordes del celular */
+        padding: 1.5rem;
+    }
+
+    /* 2. Ajustar tamaños de títulos que eran demasiado grandes y se salían de la pantalla */
+    #titulo {
+        scale: 1.2; /* Reducido desde 1.9 */
+        margin-bottom: 25px;
+    }
+
+    .title-fx {
+        font-size: 2rem;
+    }
+
+    /* 3. Arreglar la tarjeta de personaje (apilar imagen arriba y texto abajo) */
+    .character-layout {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        padding: 10px;
+    }
+
+    .character-img {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        margin-bottom: 0;
+        z-index: 1;
+    }
+
+    .character-content {
+        margin-right: 0; /* Quita el margen negativo que rompía la pantalla a lo ancho */
+        margin-top: -20px; /* Superpone un poco el cuadro de texto sobre la imagen */
+        padding: 20px;
+        z-index: 2;
+    }
+
+    /* 4. Ajustar el Flyer y las cajas de imágenes */
+    #flyer {
+        height: auto; /* Permite que la altura se adapte automáticamente */
+        aspect-ratio: 2 / 3; /* Mantiene la proporción rectangular típica de un póster */
+    }
+
+    #Imagen, #cajai {
+        height: 250px; /* Reducir la altura estática para que encaje bien en el teléfono */
+    }
+
+    #cajai {
+        scale: 0.95; /* Agrandarlo un poco respecto al 0.7 original para que se lea mejor en móvil */
+    }
+
+    /* 5. Ajustar textos */
+    p {
+        text-align: left; /* El texto justificado en celulares suele dejar espacios en blanco raros */
+        font-size: 1rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+    
+    .nav-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}
